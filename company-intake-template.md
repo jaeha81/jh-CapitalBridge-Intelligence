@@ -1,5 +1,5 @@
 # company-intake-template.md — 기업 기본정보 입력 템플릿
-> 담당: Data Intake Agent / 출력 대상: Financial Analysis Agent / Business Model Agent
+> 담당: Data Intake Agent / 출력 대상: Startup Screening Agent / Financial Analysis Agent / Validation Coordinator Agent
 
 ## 기업 기본정보
 - 기업명:
@@ -27,7 +27,12 @@
 - 현재 사업 지역:
 - 해외 사업 여부:
 
-## 지식재산권 및 인증
+## AI 기술 스택 및 지식재산권
+- AI 적용 영역 (제품 핵심 / 보조 기능 / 내부 운영):
+- 사용 모델 / 프레임워크 / 인프라:
+- 자체 모델 또는 데이터 보유 여부:
+- AI 성능 검증 자료 보유 여부:
+- AI 기술 인력 구성:
 - 특허 보유 현황:
 - 인증 현황 (ISO / 기타):
 - 핵심 기술 / 데이터 보유 여부:
@@ -40,5 +45,7 @@
 ## 누락 항목 체크리스트
 - [ ] 주주 구성 확인 필요
 - [ ] 핵심 계약 정보 확인 필요
+- [ ] AI 기술 스택 확인 필요
+- [ ] 자체 데이터 / 모델 보유 여부 확인 필요
 - [ ] 지식재산권 현황 확인 필요
 - [ ] 기타: (직접 기재)

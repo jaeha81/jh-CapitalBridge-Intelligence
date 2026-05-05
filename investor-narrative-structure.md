@@ -1,5 +1,5 @@
 # investor-narrative-structure.md — 투자자 논리 구조
-> 담당: Investor Narrative Agent
+> 담당: Investor Matching Agent
 > 주의: 투자 권유 / 수익 보장 표현 절대 금지
 
 ## 투자 논리 핵심 메시지 구조

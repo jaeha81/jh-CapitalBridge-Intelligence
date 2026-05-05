@@ -1,5 +1,5 @@
 # risk-review-template.md — 리스크 검토 템플릿
-> 담당: Risk Review Agent / 출력 대상: Validation Coordinator Agent / Report Builder Agent
+> 담당: Valuation Modeling Agent / 출력 대상: Investor Matching Agent / Validation Coordinator Agent
 
 ## 재무 리스크
 - [ ] 매출 집중도 리스크 (상위 고객 의존도 과도 여부)

@@ -41,6 +41,6 @@
 ## 검증 실패 유형별 관련 Agent
 - 임의 수치 생성 → Data Intake Agent 또는 Financial Analysis Agent로 반환
 - 밸류에이션 가정 오류 → Valuation Modeling Agent로 반환
-- 투자자문 표현 → Investor Narrative Agent 또는 Report Builder Agent로 반환
-- 리스크 누락 → Risk Review Agent로 반환
-- 보고서 논리 오류 → Report Builder Agent로 반환
+- 투자자문 표현 → Investor Matching Agent 또는 Validation Coordinator Agent로 반환
+- 리스크 누락 → Valuation Modeling Agent로 반환
+- 보고서 논리 오류 → Validation Coordinator Agent로 반환
