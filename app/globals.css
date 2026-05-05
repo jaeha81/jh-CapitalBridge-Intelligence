@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface: #0f1117;
+  --surface-card: #16181f;
+  --surface-border: #1e2130;
+  --brand: #6366f1;
+  --brand-dim: rgba(99,102,241,0.15);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--surface);
+  color: #f1f5f9;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 스크롤바 */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--surface-border); border-radius: 2px; }
+
+/* 글로벌 카드 */
+.card {
+  background: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+/* 글로벌 버튼 */
+.btn-primary {
+  @apply bg-brand-600 hover:bg-brand-500 text-white font-medium px-4 py-2 rounded-lg transition-colors text-sm;
+}
+.btn-secondary {
+  @apply bg-surface-hover hover:bg-surface-border text-text-primary font-medium px-4 py-2 rounded-lg transition-colors text-sm border border-surface-border;
+}
+
+/* 인풋 */
+.input {
+  @apply w-full bg-surface border border-surface-border rounded-lg px-3 py-2 text-text-primary text-sm focus:outline-none focus:border-brand-500 transition-colors placeholder:text-text-muted;
+}
+
+/* 배지 */
+.badge {
+  @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+}
