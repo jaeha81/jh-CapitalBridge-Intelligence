@@ -58,22 +58,22 @@ export default function EstimatePage() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto animate-slide-up">
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-blue-400/10 rounded-lg">
+    <div className="mx-auto max-w-5xl animate-slide-up">
+      <div className="mb-6 sm:mb-8">
+        <div className="mb-2 flex items-center gap-3">
+          <div className="rounded-lg bg-blue-400/10 p-2">
             <FileText size={18} className="text-blue-400" />
           </div>
-          <h1 className="font-display text-4xl tracking-wider text-text-primary">
+          <h1 className="text-2xl font-semibold tracking-tight text-text-primary sm:font-display sm:text-4xl sm:tracking-wider">
             견적 자동화
           </h1>
         </div>
-        <p className="text-text-secondary text-sm ml-12">
+        <p className="text-sm leading-6 text-text-secondary sm:ml-12">
           고객 요구사항 입력 → Claude AI 견적서 초안 자동 생성
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
         {/* 입력 폼 */}
         <div className="card space-y-4">
           <h2 className="text-sm font-medium text-text-secondary uppercase tracking-wider">
@@ -100,7 +100,7 @@ export default function EstimatePage() {
             </select>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid gap-3 sm:grid-cols-2">
             <div>
               <label className="block text-xs text-text-muted mb-1.5">
                 공간 크기 (평)
@@ -180,7 +180,7 @@ export default function EstimatePage() {
         </div>
 
         {/* 결과 */}
-        <div className="card flex flex-col">
+        <div className="card flex min-h-[360px] flex-col">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-medium text-text-secondary uppercase tracking-wider">
               AI 견적서 초안

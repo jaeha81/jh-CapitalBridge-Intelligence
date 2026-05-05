@@ -148,7 +148,7 @@ export default function PartnersPage() {
   };
 
   return (
-    <div className="mx-auto max-w-6xl animate-slide-up space-y-6">
+    <div className="mx-auto max-w-6xl animate-slide-up space-y-5 sm:space-y-6">
       <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <div className="flex items-center gap-3">
@@ -159,7 +159,7 @@ export default function PartnersPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-violet-200">
                 Partner Network
               </p>
-              <h1 className="mt-1 text-3xl font-semibold tracking-tight text-text-primary">
+              <h1 className="mt-1 text-2xl font-semibold tracking-tight text-text-primary sm:text-3xl">
                 협력업체
               </h1>
             </div>
@@ -242,7 +242,7 @@ export default function PartnersPage() {
           )}
         </div>
       ) : (
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-3 lg:grid-cols-2">
           {filtered.map((partner) => (
             <article
               key={partner.id}
@@ -300,8 +300,8 @@ export default function PartnersPage() {
       )}
 
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
-          <div className="w-full max-w-lg rounded-lg border border-surface-border bg-surface-card p-6 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-3 sm:items-center sm:p-4">
+          <div className="max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-lg border border-surface-border bg-surface-card p-4 shadow-2xl sm:p-6">
             <div className="mb-5 flex items-center justify-between">
               <div>
                 <h2 className="text-base font-semibold text-text-primary">

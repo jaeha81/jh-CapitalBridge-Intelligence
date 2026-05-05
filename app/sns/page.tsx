@@ -57,22 +57,22 @@ export default function SnsPage() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto animate-slide-up">
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-pink-400/10 rounded-lg">
+    <div className="mx-auto max-w-5xl animate-slide-up">
+      <div className="mb-6 sm:mb-8">
+        <div className="mb-2 flex items-center gap-3">
+          <div className="rounded-lg bg-pink-400/10 p-2">
             <Camera size={18} className="text-pink-400" />
           </div>
-          <h1 className="font-display text-4xl tracking-wider text-text-primary">
+          <h1 className="text-2xl font-semibold tracking-tight text-text-primary sm:font-display sm:text-4xl sm:tracking-wider">
             SNS 콘텐츠
           </h1>
         </div>
-        <p className="text-text-secondary text-sm ml-12">
+        <p className="text-sm leading-6 text-text-secondary sm:ml-12">
           시공 정보 입력 → 인스타그램/블로그 게시글 자동 생성
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
         <div className="card space-y-4">
           <h2 className="text-sm font-medium text-text-secondary uppercase tracking-wider">
             시공 정보 입력
@@ -108,7 +108,7 @@ export default function SnsPage() {
             <label className="block text-xs text-text-muted mb-2">
               게시 플랫폼
             </label>
-            <div className="flex gap-2">
+            <div className="grid grid-cols-3 gap-2">
               {[
                 { value: "instagram", label: "인스타그램" },
                 { value: "blog", label: "블로그" },
@@ -167,7 +167,7 @@ export default function SnsPage() {
           </button>
         </div>
 
-        <div className="card flex flex-col">
+        <div className="card flex min-h-[360px] flex-col">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-medium text-text-secondary uppercase tracking-wider">
               생성된 게시글

@@ -139,13 +139,13 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-6xl animate-slide-up space-y-8">
+    <div className="mx-auto max-w-6xl animate-slide-up space-y-6 sm:space-y-8">
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-300">
             CapitalBridge Intelligence
           </p>
-          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-text-primary">
+          <h1 className="mt-2 text-2xl font-semibold tracking-tight text-text-primary sm:text-3xl">
             운영 대시보드
           </h1>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-text-secondary">
@@ -168,7 +168,7 @@ export default function DashboardPage() {
         </div>
       )}
 
-      <section className="grid gap-4 md:grid-cols-4">
+      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {statItems.map(({ label, value, icon: Icon, color, caption }) => (
           <div key={label} className="card min-h-[132px]">
             <div className="flex items-center justify-between">
@@ -177,7 +177,7 @@ export default function DashboardPage() {
               </p>
               <Icon size={17} className={color} />
             </div>
-            <p className={`mt-5 text-4xl font-semibold tracking-tight ${color}`}>
+            <p className={`mt-5 text-3xl font-semibold tracking-tight sm:text-4xl ${color}`}>
               {loading ? "-" : value.toLocaleString()}
             </p>
             <p className="mt-2 text-xs text-text-muted">{caption}</p>
@@ -192,7 +192,7 @@ export default function DashboardPage() {
             빠른 실행
           </h2>
         </div>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-3 lg:grid-cols-2 lg:gap-4">
           {quickActions.map(({ href, label, desc, icon: Icon, color, bg }) => (
             <Link
               key={href}

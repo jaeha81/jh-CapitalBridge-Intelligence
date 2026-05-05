@@ -15,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <div className="flex min-h-screen">
+        <div className="min-h-screen">
           <Sidebar />
-          <main className="flex-1 ml-64 p-8 animate-fade-in">
+          <main className="animate-fade-in px-4 pb-24 pt-5 sm:px-6 lg:ml-64 lg:p-8">
             {children}
           </main>
         </div>

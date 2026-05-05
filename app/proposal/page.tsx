@@ -68,22 +68,22 @@ export default function ProposalPage() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto animate-slide-up">
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-yellow-400/10 rounded-lg">
+    <div className="mx-auto max-w-5xl animate-slide-up">
+      <div className="mb-6 sm:mb-8">
+        <div className="mb-2 flex items-center gap-3">
+          <div className="rounded-lg bg-yellow-400/10 p-2">
             <Lightbulb size={18} className="text-yellow-400" />
           </div>
-          <h1 className="font-display text-4xl tracking-wider text-text-primary">
+          <h1 className="text-2xl font-semibold tracking-tight text-text-primary sm:font-display sm:text-4xl sm:tracking-wider">
             제안서 생성
           </h1>
         </div>
-        <p className="text-text-secondary text-sm ml-12">
+        <p className="text-sm leading-6 text-text-secondary sm:ml-12">
           스타일 키워드 입력 → AI 자재/가구 제안서 자동 생성
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
         <div className="card space-y-5">
           <h2 className="text-sm font-medium text-text-secondary uppercase tracking-wider">
             스타일 정보 입력
@@ -194,7 +194,7 @@ export default function ProposalPage() {
           </button>
         </div>
 
-        <div className="card flex flex-col">
+        <div className="card flex min-h-[360px] flex-col">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-medium text-text-secondary uppercase tracking-wider">
               AI 자재/가구 제안서
