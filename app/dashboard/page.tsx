@@ -15,10 +15,6 @@ import {
   Users,
   Wrench,
 } from "lucide-react";
-import {
-  getSupabaseBrowserClient,
-  isSupabaseBrowserConfigured,
-} from "@/lib/supabase-browser";
 
 const quickActions = [
   {
@@ -75,58 +71,26 @@ export default function DashboardPage() {
   const [error, setError] = useState("");
 
   const loadStats = async () => {
-    if (!isSupabaseBrowserConfigured()) {
-      setLoading(false);
-      setError("Supabase 환경변수가 없어 샘플 대시보드로 표시합니다.");
-      return;
-    }
-
     setLoading(true);
     setError("");
 
     try {
-      const supabase = getSupabaseBrowserClient();
-      const monthStart = new Date();
-      monthStart.setDate(1);
-      monthStart.setHours(0, 0, 0, 0);
+      const response = await fetch("/api/dashboard/stats", {
+        cache: "no-store",
+      });
+      const data = (await response.json()) as Partial<DashboardStats> & {
+        error?: string;
+      };
 
-      const [
-        customersResult,
-        activeResult,
-        completedResult,
-        estimateResult,
-      ] = await Promise.all([
-        supabase.from("customers").select("id", { count: "exact", head: true }),
-        supabase
-          .from("customers")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "active"),
-        supabase
-          .from("customers")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "completed"),
-        supabase
-          .from("estimates")
-          .select("id", { count: "exact", head: true })
-          .gte("created_at", monthStart.toISOString()),
-      ]);
-
-      const failed = [
-        customersResult.error,
-        activeResult.error,
-        completedResult.error,
-        estimateResult.error,
-      ].find(Boolean);
-
-      if (failed) {
-        throw failed;
+      if (!response.ok) {
+        throw new Error(data.error);
       }
 
       setStats({
-        customers: customersResult.count ?? 0,
-        activeProjects: activeResult.count ?? 0,
-        monthlyEstimates: estimateResult.count ?? 0,
-        completedProjects: completedResult.count ?? 0,
+        customers: data.customers ?? 0,
+        activeProjects: data.activeProjects ?? 0,
+        monthlyEstimates: data.monthlyEstimates ?? 0,
+        completedProjects: data.completedProjects ?? 0,
       });
     } catch (err) {
       setError(

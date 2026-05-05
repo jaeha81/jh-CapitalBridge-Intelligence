@@ -13,10 +13,6 @@ import {
   X,
 } from "lucide-react";
 import type { Partner } from "@/lib/types";
-import {
-  getSupabaseBrowserClient,
-  isSupabaseBrowserConfigured,
-} from "@/lib/supabase-browser";
 
 const CATEGORIES = [
   "전체",
@@ -75,26 +71,21 @@ export default function PartnersPage() {
   }, [category, partners, search]);
 
   const loadPartners = async () => {
-    if (!isSupabaseBrowserConfigured()) {
-      setLoading(false);
-      setError("Supabase 환경변수가 없어 협력업체 데이터를 불러올 수 없습니다.");
-      return;
-    }
-
     setLoading(true);
     setError("");
 
     try {
-      const { data, error: queryError } = await getSupabaseBrowserClient()
-        .from("partners")
-        .select("*")
-        .order("created_at", { ascending: false });
+      const response = await fetch("/api/partners", { cache: "no-store" });
+      const data = (await response.json()) as {
+        partners?: Partner[];
+        error?: string;
+      };
 
-      if (queryError) {
-        throw queryError;
+      if (!response.ok) {
+        throw new Error(data.error);
       }
 
-      setPartners((data ?? []) as Partner[]);
+      setPartners(data.partners ?? []);
     } catch (err) {
       setError(
         err instanceof Error
@@ -116,11 +107,6 @@ export default function PartnersPage() {
       return;
     }
 
-    if (!isSupabaseBrowserConfigured()) {
-      setError("Supabase 환경변수 설정 후 업체 등록을 사용할 수 있습니다.");
-      return;
-    }
-
     setSaving(true);
     setError("");
 
@@ -135,17 +121,21 @@ export default function PartnersPage() {
         notes: form.notes.trim() || null,
       };
 
-      const { data, error: insertError } = await getSupabaseBrowserClient()
-        .from("partners")
-        .insert(payload)
-        .select("*")
-        .single();
+      const response = await fetch("/api/partners", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = (await response.json()) as {
+        partner?: Partner;
+        error?: string;
+      };
 
-      if (insertError) {
-        throw insertError;
+      if (!response.ok || !data.partner) {
+        throw new Error(data.error ?? "협력업체 등록에 실패했습니다.");
       }
 
-      setPartners((current) => [data as Partner, ...current]);
+      setPartners((current) => [data.partner!, ...current]);
       setForm(emptyForm);
       setShowForm(false);
     } catch (err) {

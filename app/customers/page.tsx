@@ -12,10 +12,6 @@ import {
   X,
 } from "lucide-react";
 import type { Customer } from "@/lib/types";
-import {
-  getSupabaseBrowserClient,
-  isSupabaseBrowserConfigured,
-} from "@/lib/supabase-browser";
 
 const STATUS_MAP = {
   lead: { label: "상담 대기", color: "bg-amber-500/15 text-amber-300" },
@@ -64,26 +60,21 @@ export default function CustomersPage() {
   }, [customers, search]);
 
   const loadCustomers = async () => {
-    if (!isSupabaseBrowserConfigured()) {
-      setLoading(false);
-      setError("Supabase 환경변수가 없어 고객 데이터를 불러올 수 없습니다.");
-      return;
-    }
-
     setLoading(true);
     setError("");
 
     try {
-      const { data, error: queryError } = await getSupabaseBrowserClient()
-        .from("customers")
-        .select("*")
-        .order("created_at", { ascending: false });
+      const response = await fetch("/api/customers", { cache: "no-store" });
+      const data = (await response.json()) as {
+        customers?: Customer[];
+        error?: string;
+      };
 
-      if (queryError) {
-        throw queryError;
+      if (!response.ok) {
+        throw new Error(data.error);
       }
 
-      setCustomers((data ?? []) as Customer[]);
+      setCustomers(data.customers ?? []);
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "고객 목록을 불러오지 못했습니다."
@@ -103,11 +94,6 @@ export default function CustomersPage() {
       return;
     }
 
-    if (!isSupabaseBrowserConfigured()) {
-      setError("Supabase 환경변수 설정 후 고객 등록을 사용할 수 있습니다.");
-      return;
-    }
-
     setSaving(true);
     setError("");
 
@@ -122,17 +108,21 @@ export default function CustomersPage() {
         notes: form.notes.trim() || null,
       };
 
-      const { data, error: insertError } = await getSupabaseBrowserClient()
-        .from("customers")
-        .insert(payload)
-        .select("*")
-        .single();
+      const response = await fetch("/api/customers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = (await response.json()) as {
+        customer?: Customer;
+        error?: string;
+      };
 
-      if (insertError) {
-        throw insertError;
+      if (!response.ok || !data.customer) {
+        throw new Error(data.error ?? "고객 등록에 실패했습니다.");
       }
 
-      setCustomers((current) => [data as Customer, ...current]);
+      setCustomers((current) => [data.customer!, ...current]);
       setForm(emptyForm);
       setShowForm(false);
     } catch (err) {
